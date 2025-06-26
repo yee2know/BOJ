@@ -11,24 +11,21 @@ int main()
 	cin >> N;
 	vector<int> A(N+1,0);
 	for(int i=1;i<=N;i++) cin >> A[i];
-	vector<pair<int,int>> D(N+1);
-	D[0].first=D[0].second=0;
-	D[1].first=A[1];
-	D[1].second=0;
+	vector<vector<int>> D(N+1, vector<int>(3, -1));
+	D[0][0]=0;
+	D[0][1]=0;
+	D[1][0]=A[1];
 	for(int i=2;i<=N;i++){
-		if(D[i-1].second==1){
-			D[i].first = D[i-2].first + A[i];
-			D[i].second=0;
-		}else{
-			if(D[i-1].first>D[i-2].first){
-				D[i].first = D[i-1].first + A[i];
-				D[i].second = D[i-1].second+1;
-			}else{
-				D[i].first = D[i-2].first + A[i];
-				D[i].second=0;
-			}
-		}
-		cout << D[i].first << " " << D[i].second << "\n";	}
-	cout << D[N].first;
+
+			D[i][0] = max(D[i-2][0],D[i-2][1]) + A[i];
+			D[i][1] = D[i-1][0] + A[i];
+
+	}
+	cout << max(D[N][0],D[N][1]);
 	return 0;
 }
+// 9
+// 6 15
+// 17 -1
+// 19 21
+// 21 -1
