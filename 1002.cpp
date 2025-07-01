@@ -17,14 +17,14 @@ int main() {
 		}
 		d1=r1+r2;
 		d2 = sqrt(pow(x2-x1,2)+pow(y2-y1,2));
-		if(d1>d2){
-			cout << 2 << "\n";
-			continue;
-		}else if(d1<d2){
+		if(d2>d1){
 			cout << 0 << "\n";
-			continue;
-		}else{
+		}else if(d2==r2+r1||d2==abs(r2-r1)){
 			cout << 1 << "\n";
+		}else if(d2<r2+r1&&d2>abs(r2-r1)){
+			cout << 2 << "\n";
+		}else{
+			cout << 0 << "\n";
 		}
 	}
 	return 0;
