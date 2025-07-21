@@ -10,7 +10,7 @@ int main()
 	int a,b,c;
 	cin >> a >> b >> c;
 	c-=a;
-	if(c%b!=0||c/b<=0) cout << "X";
+	if(c%b!=0||c/b<0) cout << "X";
 	else cout <<c/b+1;
 	return 0;
 }
