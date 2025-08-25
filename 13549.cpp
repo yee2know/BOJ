@@ -19,10 +19,10 @@ int main() {
 		int p = now.first;
 		int t = now.second;
 		if(p==K) {cout << t;return 0;}
-		if(p+1>=0&&p+1<=100000){
-			if(!visited[p+1]){
-				visited[p+1]=true;
-				q.push({p+1,t+1});
+		if(p*2>=0&&p*2<=100000){
+			if(!visited[p*2]){
+				visited[p*2]=true;
+				q.push({p*2,t});
 			}
 		}
 		if(p-1>=0&&p-1<=100000){
@@ -31,10 +31,10 @@ int main() {
 				q.push({p-1,t+1});
 			}
 		}
-		if(p*2>=0&&p*2<=100000){
-			if(!visited[p*2]){
-				visited[p*2]=true;
-				q.push({p*2,t+1});
+		if(p+1>=0&&p+1<=100000){
+			if(!visited[p+1]){
+				visited[p+1]=true;
+				q.push({p+1,t+1});
 			}
 		}
 	}

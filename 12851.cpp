@@ -13,30 +13,34 @@ int main() {
 	queue<pos> q;
 	q.push({N,0});
 	visited[N]=true;
+	int count=0;
+	int time=-99;
+	bool isFirst=true;
 	while(!q.empty()){
 		pos now = q.front();
 		q.pop();
 		int p = now.first;
 		int t = now.second;
-		if(p==K) {cout << t;return 0;}
-		if(p+1>=0&&p+1<=100000){
-			if(!visited[p+1]){
-				visited[p+1]=true;
+		if(isFirst&&p==K){
+			time=t;
+			count++;
+			isFirst=false;
+		}
+		else if(!isFirst&&p==K&&t==time){
+			count++;
+		}
+		visited[p]=true;
+		if(p+1>=0&&p+1<=100000&&!visited[p+1]){
 				q.push({p+1,t+1});
-			}
 		}
-		if(p-1>=0&&p-1<=100000){
-			if(!visited[p-1]){
-				visited[p-1]=true;
+		if(p-1>=0&&p-1<=100000&&!visited[p-1]){
 				q.push({p-1,t+1});
-			}
 		}
-		if(p*2>=0&&p*2<=100000){
-			if(!visited[p*2]){
-				visited[p*2]=true;
+		if(p*2>=0&&p*2<=100000&&!visited[p*2]){
 				q.push({p*2,t+1});
-			}
 		}
 	}
+	cout << time << "\n";
+	cout <<	count;
 	return 0;
 }
