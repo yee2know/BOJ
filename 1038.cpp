@@ -13,7 +13,7 @@ int main() {
     long long arr[1023],tmp;
     cin >> N;
 
-    if(N > 1023) {
+    if(N > 1022) {
         cout << "-1\n";
         return 0;
     }
@@ -30,7 +30,7 @@ int main() {
         }
     }
 
-    cout << arr[N-1] << "\n";
+    cout << arr[N] << "\n";
 
     return 0;
 }
