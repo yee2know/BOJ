@@ -4,7 +4,6 @@
 #include <queue>
 using namespace std;
 typedef pair<int,int> butter;
-typedef tuple<int,int,int> hb;
 static int N;
 static vector<butter> A;
 bool isPossible(int height){
@@ -50,8 +49,7 @@ int main()
 		return 0;
 	}
 	int height = 0;
-	sort(A.begin(),A.end());
-	int low = 0,high = A[A.size()-1].first;
+	int low = 0,high = maxHeight;
 	while(low+1<high){
 		int mid = ((low+high)/2);
 		if(isPossible(mid+1)) {
