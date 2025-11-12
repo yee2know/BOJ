@@ -4,20 +4,16 @@
 #include <algorithm>
 #define ll long long
 using namespace std;
+#define MOD 1000000000
 typedef vector<vector<ll>> matrix;
-#define MOD 1000000007
 
-matrix multiplyMatrix(matrix A,matrix B){
-	int n = A.size();
-	matrix C(n,vector<ll>(n,0));
-	for(int i=0;i<n;i++){
-		for(int j=0;j<n;j++){
-			for(int k=0;k<n;k++){
+matrix Multi(matrix A,matrix B){
+	int N = A.size();
+	matrix C(N,vector<ll>(N,0));
+	for(int i=0;i<N;i++){
+		for(int j=0;j<N;j++){
+			for(int k=0;k<N;k++){
 				C[i][j] += A[i][k]*B[k][j];
-				/*
-				a b  e f
-				c d  g h
-				*/
 			}
 			C[i][j]%=MOD;
 		}
@@ -25,20 +21,25 @@ matrix multiplyMatrix(matrix A,matrix B){
 	return C;
 }
 
-void solve(){
-	ll N;
-	cin >> N;
-	if(N<=1) {cout << N;return;}
+ll fibo(ll N){
+	if(N<=1) return N;
+	matrix ans = {{1,0},{0,1}};
 	matrix A = {{1,1},{1,0}};
-	matrix result = {{1,0},{0,1}};
 	while(N>0){
 		if(N%2==1){
-			result = multiplyMatrix(result,A);
+			ans = Multi(ans,A);
 		}
-		A = multiplyMatrix(A,A);
+		A = Multi(A,A);
 		N/=2;
 	}
-	cout << result[0][1];
+	return ans[0][1];
+}
+
+
+void solve(){
+	ll a,b;
+	cin >> a >> b;
+	cout <<(fibo(b+2)-fibo(a+1)+MOD)%MOD;
 }
 
 int main()
